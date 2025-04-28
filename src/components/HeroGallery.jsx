@@ -9,6 +9,9 @@ const client = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN_HERO_GALLERY,
 });
+console.log("Env Variables:", import.meta.env);
+console.log("Access Token:", import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN_HERO_GALLERY);
+
 
 const HeroGallery = () => {
   const [icon, setIcon] = useState({});

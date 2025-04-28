@@ -7,7 +7,7 @@ const DonateForm = () => {
   const [currency, setCurrency] = useState("NGN");
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  const paymentSuccess = useRef(false); // ✅ Track success with useRef
+  const paymentSuccess = useRef(false); //  Track success with useRef
   const publicKey = import.meta.env.VITE_FLUTTERWAVE_PUBLIC_KEY;
 
   const handleCurrencyChange = (e) => {
