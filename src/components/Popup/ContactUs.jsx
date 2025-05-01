@@ -18,6 +18,7 @@ const ContactUs = () => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission
     setIsSubmitting(true); // Set loading state
+    console.log("Form URL:", import.meta.env.VITE_GETFORM_URL);
 
     const formData = new FormData(event.target); // Get form data
 
