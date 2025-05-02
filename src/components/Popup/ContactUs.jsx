@@ -18,12 +18,15 @@ const ContactUs = () => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission
     setIsSubmitting(true); // Set loading state
-    console.log("Form URL:", import.meta.env.VITE_GETFORM_URL);
 
     const formData = new FormData(event.target); // Get form data
 
+    // Log the form data
+    for (let [key, value] of formData.entries()) {
+    }
+
     try {
-      const response = await fetch(import.meta.env.VITE_GETFORM_URl, {
+      const response = await fetch(import.meta.env.VITE_GETFORM_URL, {
         method: "POST",
         body: formData,
       });
@@ -44,7 +47,6 @@ const ContactUs = () => {
         alert("Something went wrong. Please try again.");
       }
     } catch (error) {
-      console.error("Form submission error:", error);
       alert("Network error. Please try again.");
     } finally {
       setIsSubmitting(false); // Reset loading state
@@ -194,7 +196,7 @@ const ContactUs = () => {
           {/* Success Message Below the Form */}
           {submitted && (
             <p className="mt-6 text-green-600 font-semibold text-center">
-              ✅ Form Submitted! Thank you.
+              ✅ Form Submitted! Thank you for contacting us.
             </p>
           )}
         </div>

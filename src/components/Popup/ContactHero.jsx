@@ -13,7 +13,6 @@ const ContactHero = () => {
       import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN_HERO_CONTACT_US
     )
   );
-  console.log("Fetched data:", contactUs);
 
   return (
     <div className="mb-8 lg:mb-16">
