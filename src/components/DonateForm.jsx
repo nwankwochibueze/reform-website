@@ -7,7 +7,7 @@ const DonateForm = () => {
   const [currency, setCurrency] = useState("NGN");
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  const paymentSuccess = useRef(false); //  Track success with useRef
+  const paymentSuccessRef = useRef(false); // Ref to track payment success
   const publicKey = import.meta.env.VITE_FLUTTERWAVE_PUBLIC_KEY;
 
   const handleCurrencyChange = (e) => {
@@ -50,7 +50,7 @@ const DonateForm = () => {
           console.log("Payment Response:", response);
 
           if (response.status === "successful") {
-            paymentSuccess.current = true;
+            paymentSuccessRef.current = true; // Mark payment as successful
             setModalMessage(
               "✅ Payment Successful! Thank you for your support."
             );
@@ -66,14 +66,20 @@ const DonateForm = () => {
         },
 
         onclose: () => {
-          setTimeout(() => {
-            if (!paymentSuccess.current) {
-              toast.warn("❌ Payment was closed. You can try again.");
-            }
-          }, 500);
+          // Remove the toast message entirely
+          if (!paymentSuccessRef.current) {
+            // Do nothing if payment was successful
+          }
         },
       });
     };
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    setTimeout(() => {
+      paymentSuccessRef.current = false; // Reset payment success after modal closes
+    }, 100); // Delay resetting the flag to avoid race conditions
   };
 
   return (
@@ -121,7 +127,7 @@ const DonateForm = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg text-center">
             <p className="text-lg font-semibold">{modalMessage}</p>
             <button
-              onClick={() => setShowModal(false)}
+              onClick={handleModalClose}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
             >
               Close
