@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { FaWater, FaTint, FaRegLifeRing, FaAnchor } from "react-icons/fa";
 
 const Projects = () => {
@@ -163,9 +164,12 @@ const Projects = () => {
           Be part of our initiatives and help create a cleaner ocean for future
           generations.
         </p>
-        <button className="bg-blue-800 text-white px-8 py-3  font-semibold hover:bg-blue-600 transition">
-          Volunteer Now
-        </button>
+        <NavLink
+          to="/contact"
+          className="bg-blue-800 text-white px-8 py-3  font-semibold hover:bg-blue-600 transition"
+        >
+          Contact Us
+        </NavLink>
       </div>
     </div>
   );
